@@ -66,7 +66,7 @@ void layout_screen_init(void) {
     printv("-");
     printv(" qwerty layout\n");
     printv("-");
-    printv(" qwertz Europe Layout\n\n");
+    // printv(" qwertz Europe Layout\n\n");
     printv("Press 1 for azerty, 2 for qwerty and 3 for qwertz\n");
     printv("(on AZERTY, you can also press & for azerty, \x82 for qwerty, or # for qwertz)\n");
     printv("Waiting for input...\n\n\nCOPYRIGHT C JAD 2026\nFREE OPEN SOURCE SOFTWARE, LICENSED UNDER GPLv3\n");
@@ -78,9 +78,11 @@ void layout_screen_init(void) {
             choice = '1';
         } else if (key == '2' || key == '\x82') {
             choice = '2';
-        } else if (key == '3' || key == '#') {
-            choice = '3';
-        }
+        } 
+        // turn this on if you want qwertz, but i dont want it so i commented it out
+        //else if (key == '3' || key == '#') {
+           // choice = '3';
+        //}
     }
 // clear the fuck
 // IT ANNOY ME I WANT TO SLAP THE SHIT OUT OF THIS
