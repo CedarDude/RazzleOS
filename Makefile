@@ -8,19 +8,12 @@ ASFLAGS = --32
 NASMFLAGS = -f elf32 -Wall -Werror
 LDFLAGS = -m elf_i386 -T src/linker.ld -Map=system.map
 
-OBJ = Boot/boot.o src/system/system.o src/system/idt.o src/system/idt_stubs.o src/drivers/VGAf/vgaf.o src/drivers/KEYdriver/key.o src/Shell_old/Shell_old.o src/Shell_old/layout_screen.o src/RazzleFS/ReqFiles/sata.o src/include/bugcheck.o
-MEMOS_OBJ = memOS/boot.o memOS/kernel.o
-MEMOS_LDFLAGS = -m elf_i386 -T memOS/linker.ld -nostdlib
+OBJ = Boot/boot.o src/system/system.o src/system/idt.o src/drivers/VGAf/vgaf.o src/drivers/KEYdriver/key.o src/Shell_old/Shell_old.o src/Shell_old/layout_screen.o src/RazzleFS/ReqFiles/sata.o src/include/bugcheck.o
 
 all: system.bin
 
 system.bin: $(OBJ) src/linker.ld
 	$(LD) $(LDFLAGS) -o $@ $(OBJ)
-
-memtest.bin: $(MEMOS_OBJ) memOS/linker.ld
-	$(LD) $(MEMOS_LDFLAGS) -o $@ $(MEMOS_OBJ)
-
-memos: memtest.bin
 
 src/system/system.o: src/system/system.c
 	$(CC) $(CFLAGS) -c $< -o $@
@@ -33,9 +26,6 @@ Boot/boot.o: Boot/boot.s
 
 src/system/idt.o: src/system/idt.c
 	$(CC) $(CFLAGS) -c $< -o $@
-
-src/system/idt_stubs.o: src/system/idt_stubs.s
-	$(AS) $(ASFLAGS) $< -o $@
 
 src/drivers/VGAf/vgaf.o: src/drivers/VGAf/vgaf.c
 	$(CC) $(CFLAGS) -c $< -o $@
@@ -66,7 +56,7 @@ x86: clean all iso
 	qemu-system-i386 -cdrom razzle.iso
 clean:
 
-	rm -f $(OBJ) system.bin razzle.iso memtest.bin memOS/*.o ./*.o ./Shell_old/Shell_old.o ./src/system/system.o ./src/system/idt.o ./src/drivers/VGAf/*.o ./src/drivers/KEYdriver/*.o ./src/RazzleFS/ReqFiles/*.o ./src/include/bugcheck.o ./iso/boot/*.o ./iso/boot/*.bin ./iso/boot/*.map
+	rm -f $(OBJ) system.bin razzle.iso ./*.o ./Shell_old/Shell_old.o ./src/system/system.o ./src/system/idt.o ./src/drivers/VGAf/*.o ./src/drivers/KEYdriver/*.o ./src/RazzleFS/ReqFiles/*.o ./src/include/bugcheck.o ./iso/boot/*.o ./iso/boot/*.bin ./iso/boot/*.map
 
 help:
 	@echo "  █████████                                    ██                ███      ███             ██                 " 

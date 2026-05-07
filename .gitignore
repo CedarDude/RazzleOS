@@ -7,3 +7,4 @@
 ./*.log
 ./*.dmp
 ./iso/*
+./system.map
