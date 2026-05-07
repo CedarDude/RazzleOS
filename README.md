@@ -1,6 +1,6 @@
 # Razzle
 Razzle Operating System.
-# Razzle 1 build i forgot to count
+# Razzle 1 build i forgot to count maybe 450
 
 ## Features
 
@@ -61,11 +61,11 @@ then use DD, not ISO mode thing.
 - **Hyper-V**: Create a VM, attach an ISO, and set to Legacy Boot
 ## Version Information
 
-- **Shell Version**: 0.1 BETA
-- **Build**: 150
-- **Last Updated**: April 2026
+- **Shell Version**: 0.2 BETA
+- **Build**: 450
+- **Last Updated**: May 2026
 - **Copyright**: (c) 2026 Jad
-- **License**: GNU General Public License (GPL)
+- **License**: GNU General Public License 3 (GPLv3)
 
 
 
