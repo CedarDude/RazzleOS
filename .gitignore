@@ -1,0 +1,9 @@
+./*.o
+./*.iso
+./*.bin
+./*.elf
+./*.img
+./*.map
+./*.log
+./*.dmp
+./iso/*
