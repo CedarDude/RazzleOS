@@ -56,22 +56,30 @@ void layout_screen_init(void) {
     colorscreen(0x14);
     colortext(0x0F);
 
+    printv("Welcome to Razzle Boot Setup!\n\n");
+    printv("================================================================================\n");
+    printv("Welcome to Razzle Setup screen!\nThis screen allows you to select your preferred keyboard layout for the shell.\n");
+    printv("Please select your keyboard layout:\n\n");
     printv("Do you want to use:\n");
-    printv_color("-", 0x0D);
+    printv("-");
     printv(" azerty layout\n");
-    printv_color("-", 0x0D);
-    printv(" qwerty layout?\n\n");
-    printv("Press 1 for azerty and 2 for qwerty\n");
-    printv("(on AZERTY, you can also press & for azerty or \x82 for qwerty)\n");
+    printv("-");
+    printv(" qwerty layout\n");
+    printv("-");
+    printv(" qwertz Europe Layout\n\n");
+    printv("Press 1 for azerty, 2 for qwerty and 3 for qwertz\n");
+    printv("(on AZERTY, you can also press & for azerty, \x82 for qwerty, or # for qwertz)\n");
     printv("Waiting for input...\n\n\nCOPYRIGHT C JAD 2026\nFREE OPEN SOURCE SOFTWARE, LICENSED UNDER GPLv3\n");
 
     unsigned char choice = 0;
-    while (choice != '1' && choice != '2') {
+    while (choice != '1' && choice != '2' && choice != '3') {
         unsigned char key = get_key();
         if (key == '1' || key == '&') {
             choice = '1';
         } else if (key == '2' || key == '\x82') {
             choice = '2';
+        } else if (key == '3' || key == '#') {
+            choice = '3';
         }
     }
 // clear the fuck
@@ -95,9 +103,12 @@ int lost_hours_on_useless_shit 30;
     if (choice == '1') {
         printv("AZERTY layout selected.\n");
         keyboard_set_layout(1);
-    } else {
+    } else if (choice == '2') {
         printv("QWERTY layout selected.\n");
         keyboard_set_layout(2);
+    } else {
+        printv("QWERTZ layout selected.\n");
+        keyboard_set_layout(3);
     }
     printv("Loading shell...\nLoading...\n...Initialized Shell!\n\n");
     clear();
