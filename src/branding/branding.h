@@ -10,6 +10,7 @@ branding file, don't wanna modify 300000+ files because of a name changing or sm
 #ifndef BRANDING_H
 #define BRANDING_H
 
-void logok();
+extern int build;
+extern int version;
 
 #endif

@@ -8,21 +8,40 @@ branding file, don't wanna modify 300000+ files because of a name changing or sm
 */
 
 #include "../drivers/VGAf/vgaf.h"
-
-int build = 280;
-
-// build counter
-// + one for each build, or maybe each day?
-
+// daily build counter?
+//maybe
+int build = RAZZLE_VERSION;
 int version = 1;
 
-// ascci art logo
+static void print_uint(unsigned int n) {
+    char buf[12];
+    int i = 0;
+    if (n == 0) {
+        vga_putc('0');
+        return;
+    }
+    while (n) {
+        buf[i++] = (char)('0' + (n % 10));
+        n /= 10;
+    }
+    while (i > 0) {
+        vga_putc(buf[--i]);
+    }
+}
 
-void logok() {
-    printv("    __________                             .__        \n");    
-    printv("\______   \ _____    ________ ________ |  |     ____  \n");
-    printv(" |       _/ \__  \   \___   / \___   / |  |   _/ __ \ \n");
-    printv(" |    |   \  / __ \_  /    /   /    /  |  |__ \  ___/ \n");
-    printv(" |____|_  / (____  / /_____ \ /_____ \ |____/  \___  >\n");
-    printv("        \/       \/        \/       \/             \/ \n");
+static void print_int(int n) {
+    if (n < 0) {
+        vga_putc('-');
+        print_uint((unsigned int)(-n));
+    } else {
+        print_uint((unsigned int)n);
+    }
+}
+
+void RT_kernel_info(void) {
+    printv("Razzle Technology RT2 Build ");
+    print_int(build);
+    printv(".");
+    print_int(version);
+    printv("\n");
 }

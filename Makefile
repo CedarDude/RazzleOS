@@ -8,12 +8,17 @@ ASFLAGS = --32
 NASMFLAGS = -f elf32 -Wall -Werror
 LDFLAGS = -m elf_i386 -T src/linker.ld -Map=system.map
 
-OBJ = Boot/boot.o src/system/system.o src/system/idt.o src/drivers/VGAf/vgaf.o src/drivers/KEYdriver/key.o src/Shell_old/Shell_old.o src/Shell_old/layout_screen.o src/RazzleFS/ReqFiles/sata.o src/include/bugcheck.o
+OBJ = Boot/boot.o src/system/system.o src/system/idt.o src/drivers/VGAf/vgaf.o src/drivers/KEYdriver/key.o src/Shell_old/Shell_old.o src/Shell_old/layout_screen.o src/RazzleFS/ReqFiles/sata.o src/include/bugcheck.o src/branding/branding.o
+
+.PHONY: buildinfo
 
 all: system.bin
 
-system.bin: $(OBJ) src/linker.ld
+system.bin: buildinfo $(OBJ) src/linker.ld
 	$(LD) $(LDFLAGS) -o $@ $(OBJ)
+
+buildinfo:
+	python3 scripts/update_build.py version.txt
 
 src/system/system.o: src/system/system.c
 	$(CC) $(CFLAGS) -c $< -o $@
@@ -39,6 +44,9 @@ src/drivers/KEYdriver/keyboard.o: src/drivers/KEYdriver/keyboard.s
 src/include/bugcheck.o: src/include/bugcheck.c
 	$(CC) $(CFLAGS) -c $< -o $@
 
+src/branding/branding.o: src/branding/branding.c version.txt
+	$(CC) $(CFLAGS) -DRAZZLE_VERSION=$$(cat version.txt) -c $< -o $@
+
 src/Shell_old/Shell_old.o: src/Shell_old/Shell_old.c
 	$(CC) $(CFLAGS) -c $< -o $@
 
@@ -53,6 +61,12 @@ iso: system.bin
 	grub-mkrescue -o razzle.iso iso/
 
 x86: clean all iso 
+	qemu-system-i386 -cdrom razzle.iso
+
+x86py: clean
+	python3 ./src/scripts/update_build.py version.txt
+	python3 ./src/scripts/build.py
+	all iso
 	qemu-system-i386 -cdrom razzle.iso
 clean:
 
