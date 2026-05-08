@@ -8,7 +8,7 @@ ASFLAGS = --32
 NASMFLAGS = -f elf32 -Wall -Werror
 LDFLAGS = -m elf_i386 -T src/linker.ld -Map=system.map
 
-OBJ = Boot/boot.o src/system/system.o src/system/idt.o src/drivers/VGAf/vgaf.o src/drivers/KEYdriver/key.o src/Shell_old/Shell_old.o src/Shell_old/layout_screen.o src/RazzleFS/ReqFiles/sata.o src/include/bugcheck.o src/branding/branding.o
+OBJ = Boot/boot.o src/system/SessionStarter.o src/system/idt.o src/drivers/VGAf/vgaf.o src/drivers/KEYdriver/key.o src/Shell_old/Shell_old.o src/Shell_old/layout_screen.o src/RazzleFS/ReqFiles/sata.o src/include/bugcheck.o src/branding/branding.o
 
 .PHONY: buildinfo
 
@@ -20,7 +20,7 @@ system.bin: buildinfo $(OBJ) src/linker.ld
 buildinfo:
 	python3 scripts/update_build.py version.txt
 
-src/system/system.o: src/system/system.c
+src/system/SessionStarter.o: src/system/SessionStarter.c
 	$(CC) $(CFLAGS) -c $< -o $@
 
 src/RazzleFS/ReqFiles/sata.o: src/RazzleFS/ReqFiles/sata.c
@@ -64,13 +64,13 @@ x86: clean all iso
 	qemu-system-i386 -cdrom razzle.iso
 
 x86py: clean
-	python3 ./src/scripts/update_build.py version.txt
-	python3 ./src/scripts/build.py
-	all iso
+	python3 scripts/update_build.py version.txt
+	$(MAKE) all
+	$(MAKE) iso
 	qemu-system-i386 -cdrom razzle.iso
 clean:
 
-	rm -f $(OBJ) system.bin razzle.iso ./*.o ./Shell_old/Shell_old.o ./src/system/system.o ./src/system/idt.o ./src/drivers/VGAf/*.o ./src/drivers/KEYdriver/*.o ./src/RazzleFS/ReqFiles/*.o ./src/include/bugcheck.o ./iso/boot/*.o ./iso/boot/*.bin ./iso/boot/*.map
+	rm -f $(OBJ) system.bin razzle.iso ./*.o ./Shell_old/Shell_old.o ./src/system/SessionStarter.o ./src/system/idt.o ./src/drivers/VGAf/*.o ./src/drivers/KEYdriver/*.o ./src/RazzleFS/ReqFiles/*.o ./src/include/bugcheck.o ./iso/boot/*.o ./iso/boot/*.bin ./iso/boot/*.map
 
 help:
 	@echo "  █████████                                    ██                ███      ███             ██                 " 
