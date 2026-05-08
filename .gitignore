@@ -8,4 +8,4 @@
 ./*.dmp
 ./iso/*
 ./system.map
-./razzle.git.ps1
+razzle.git.ps1

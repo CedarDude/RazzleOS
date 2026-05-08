@@ -1,6 +1,6 @@
 # Razzle
 Razzle Operating System.
-# Razzle 1 build i forgot to count
+# Razzle 1
 
 ## Features
 
@@ -9,6 +9,10 @@ Razzle Operating System.
 - AZERTY keyboard layout support
 - Case-insensitive command parsing
 - Interactive shell
+
+## stuff:
+If you want to get the QWERTZ layout, just open layout_screen.c and key.c and remove the ```//``` comments, if it don't work or
+require more info, please use `jad.helpabout@gmail.com`
 
 ## How to Build
 
@@ -23,9 +27,6 @@ Razzle Operating System.
 ### Build Steps
 
 1. **Navigate to project directory**
-   ```bash
-   cd /Razzle1
-   ```
 2. **Build kernel and ISO image**
    ```bash
    make x86
@@ -66,6 +67,5 @@ then use DD, not ISO mode thing.
 - **Last Updated**: April 2026
 - **Copyright**: (c) 2026 Jad
 - **License**: GNU General Public License (GPL)
-
 
 
