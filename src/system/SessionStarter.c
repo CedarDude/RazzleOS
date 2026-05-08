@@ -5,9 +5,7 @@
 extern void init_idt(void);
 
 static void boot_screen() {
-    printv("Booting...\n");
-    printv("COPYRIGHT JAD 2026\n\n");
-    printv("razzle Operating System!\n\n");
+    printv("...\n");
     
 }
 

@@ -8,6 +8,10 @@ Razzle Operating System.
 - Case-insensitive command parsing
 - Interactive shell
 
+## stuff:
+If you want to get the QWERTZ layout, just open layout_screen.c and key.c and remove the ```//``` comments, if it don't work or
+require more info, please use `jad.helpabout@gmail.com`
+
 ## How to Build
 ### Requirements
 - GNU Cross-Compiler (GCC), GNU Make and binutils for i386
@@ -47,6 +51,5 @@ Run Rufus. Choose the USB drive and Razzle ISO. Write the image using DD mode.
 - **Last Updated**: May 2026
 - **Copyright**: (c) 2026 Jad
 - **License**: GNU General Public License 3 (GPL v3)
-
 
 

@@ -1,0 +1,289 @@
+
+Discarded input sections
+
+ .group         0x00000000        0x8 src/system/SessionStarter.o
+ .note.GNU-stack
+                0x00000000        0x0 src/system/SessionStarter.o
+ .group         0x00000000        0x8 src/system/idt.o
+ .group         0x00000000        0x8 src/system/idt.o
+ .text.__x86.get_pc_thunk.bx
+                0x00000000        0x4 src/system/idt.o
+ .note.GNU-stack
+                0x00000000        0x0 src/system/idt.o
+ .group         0x00000000        0x8 src/drivers/VGAf/vgaf.o
+ .group         0x00000000        0x8 src/drivers/VGAf/vgaf.o
+ .group         0x00000000        0x8 src/drivers/VGAf/vgaf.o
+ .group         0x00000000        0x8 src/drivers/VGAf/vgaf.o
+ .group         0x00000000        0x8 src/drivers/VGAf/vgaf.o
+ .text.__x86.get_pc_thunk.ax
+                0x00000000        0x4 src/drivers/VGAf/vgaf.o
+ .text.__x86.get_pc_thunk.bx
+                0x00000000        0x4 src/drivers/VGAf/vgaf.o
+ .note.GNU-stack
+                0x00000000        0x0 src/drivers/VGAf/vgaf.o
+ .group         0x00000000        0x8 src/drivers/KEYdriver/key.o
+ .group         0x00000000        0x8 src/drivers/KEYdriver/key.o
+ .group         0x00000000        0x8 src/drivers/KEYdriver/key.o
+ .text.__x86.get_pc_thunk.ax
+                0x00000000        0x4 src/drivers/KEYdriver/key.o
+ .text.__x86.get_pc_thunk.cx
+                0x00000000        0x4 src/drivers/KEYdriver/key.o
+ .text.__x86.get_pc_thunk.bx
+                0x00000000        0x4 src/drivers/KEYdriver/key.o
+ .note.GNU-stack
+                0x00000000        0x0 src/drivers/KEYdriver/key.o
+ .group         0x00000000        0x8 src/Shell_old/Shell_old.o
+ .group         0x00000000        0x8 src/Shell_old/Shell_old.o
+ .text.__x86.get_pc_thunk.bx
+                0x00000000        0x4 src/Shell_old/Shell_old.o
+ .note.GNU-stack
+                0x00000000        0x0 src/Shell_old/Shell_old.o
+ .group         0x00000000        0x8 src/Shell_old/layout_screen.o
+ .text.__x86.get_pc_thunk.bx
+                0x00000000        0x4 src/Shell_old/layout_screen.o
+ .note.GNU-stack
+                0x00000000        0x0 src/Shell_old/layout_screen.o
+ .note.GNU-stack
+                0x00000000        0x0 src/RazzleFS/ReqFiles/sata.o
+ .group         0x00000000        0x8 src/include/bugcheck.o
+ .text.__x86.get_pc_thunk.bx
+                0x00000000        0x4 src/include/bugcheck.o
+ .note.GNU-stack
+                0x00000000        0x0 src/include/bugcheck.o
+ .group         0x00000000        0x8 src/branding/branding.o
+ .text.__x86.get_pc_thunk.bx
+                0x00000000        0x4 src/branding/branding.o
+ .note.GNU-stack
+                0x00000000        0x0 src/branding/branding.o
+
+Memory Configuration
+
+Name             Origin             Length             Attributes
+*default*        0x00000000         0xffffffff
+
+Linker script and memory map
+
+                0x00100000                        . = 0x100000
+
+.multiboot      0x00100000        0xc
+ *(.multiboot)
+ .multiboot     0x00100000        0xc Boot/boot.o
+
+.text           0x00101000     0x2488
+ *(.text)
+ .text          0x00101000        0xf Boot/boot.o
+                0x00101000                _start
+ *fill*         0x0010100f        0x1 
+ .text          0x00101010       0x43 src/system/SessionStarter.o
+                0x00101010                kernel_main
+ *fill*         0x00101053        0xd 
+ .text          0x00101060      0x140 src/system/idt.o
+                0x00101060                idt_set_gate
+                0x001010a0                init_idt
+                0x00101180                test
+ .text          0x001011a0      0x4b8 src/drivers/VGAf/vgaf.o
+                0x00101210                vga_init
+                0x00101260                printv
+                0x00101300                uprint
+                0x001013b0                uprint_no_scroll
+                0x00101440                vga_putc
+                0x00101520                colorscreen
+                0x00101570                clear
+                0x001015c0                colortext
+                0x001015e0                printv_color
+                0x00101620                scanv
+                0x00101640                test_vgaf
+ *fill*         0x00101658        0x8 
+ .text          0x00101660      0x140 src/drivers/KEYdriver/key.o
+                0x00101660                keyboard_init
+                0x00101690                keyboard_set_layout
+                0x001016e0                get_key
+                0x00101780                keyboardtest
+ .text          0x001017a0     0x1931 src/Shell_old/Shell_old.o
+                0x00101b30                shell_main
+ *fill*         0x001030d1        0xf 
+ .text          0x001030e0      0x190 src/Shell_old/layout_screen.o
+                0x001030e0                layout_screen_init
+                0x00103250                layoutswitcher_test
+ .text          0x00103270        0x0 src/RazzleFS/ReqFiles/sata.o
+ .text          0x00103270       0xc5 src/include/bugcheck.o
+                0x00103270                check_if_bugcheck_function_exists
+                0x001032a0                tripletest_and_test_idt
+                0x001032d0                bugcheck
+ *fill*         0x00103335        0xb 
+ .text          0x00103340      0x148 src/branding/branding.o
+                0x001033e0                RT_kernel_info
+
+.iplt           0x00103488        0x0
+ .iplt          0x00103488        0x0 Boot/boot.o
+
+.text.__x86.get_pc_thunk.bx
+                0x00103488        0x4
+ .text.__x86.get_pc_thunk.bx
+                0x00103488        0x4 src/system/SessionStarter.o
+                0x00103488                __x86.get_pc_thunk.bx
+
+.text.__x86.get_pc_thunk.ax
+                0x0010348c        0x4
+ .text.__x86.get_pc_thunk.ax
+                0x0010348c        0x4 src/system/idt.o
+                0x0010348c                __x86.get_pc_thunk.ax
+
+.text.__x86.get_pc_thunk.dx
+                0x00103490        0x4
+ .text.__x86.get_pc_thunk.dx
+                0x00103490        0x4 src/drivers/VGAf/vgaf.o
+                0x00103490                __x86.get_pc_thunk.dx
+
+.text.__x86.get_pc_thunk.cx
+                0x00103494        0x4
+ .text.__x86.get_pc_thunk.cx
+                0x00103494        0x4 src/drivers/VGAf/vgaf.o
+                0x00103494                __x86.get_pc_thunk.cx
+
+.text.__x86.get_pc_thunk.bp
+                0x00103498        0x4
+ .text.__x86.get_pc_thunk.bp
+                0x00103498        0x4 src/drivers/VGAf/vgaf.o
+                0x00103498                __x86.get_pc_thunk.bp
+
+.text.__x86.get_pc_thunk.si
+                0x0010349c        0x4
+ .text.__x86.get_pc_thunk.si
+                0x0010349c        0x4 src/Shell_old/Shell_old.o
+                0x0010349c                __x86.get_pc_thunk.si
+
+.rodata         0x00104000      0x244
+ *(.rodata)
+ .rodata        0x00104000      0x200 src/drivers/KEYdriver/key.o
+ .rodata        0x00104200       0x44 src/Shell_old/Shell_old.o
+
+.rodata.str1.1  0x00104244      0x385
+ .rodata.str1.1
+                0x00104244      0x385 src/system/SessionStarter.o
+                                  0x5 (size before relaxing)
+ .rodata.str1.1
+                0x001045c9       0x1e src/system/idt.o
+ .rodata.str1.1
+                0x001045c9      0x2d7 src/Shell_old/Shell_old.o
+ .rodata.str1.1
+                0x001045c9       0x6c src/Shell_old/layout_screen.o
+ .rodata.str1.1
+                0x001045c9       0x16 src/include/bugcheck.o
+ .rodata.str1.1
+                0x001045c9       0x21 src/branding/branding.o
+
+.eh_frame       0x001045cc      0xc18
+ .eh_frame      0x001045cc       0x54 src/system/SessionStarter.o
+ .eh_frame      0x00104620       0x94 src/system/idt.o
+                                 0xc0 (size before relaxing)
+ .eh_frame      0x001046b4      0x20c src/drivers/VGAf/vgaf.o
+                                0x24c (size before relaxing)
+ .eh_frame      0x001048c0       0x6c src/drivers/KEYdriver/key.o
+                                 0xc0 (size before relaxing)
+ .eh_frame      0x0010492c      0x708 src/Shell_old/Shell_old.o
+                                0x734 (size before relaxing)
+ .eh_frame      0x00105034       0x74 src/Shell_old/layout_screen.o
+                                 0xa0 (size before relaxing)
+ .eh_frame      0x001050a8       0x80 src/include/bugcheck.o
+                                 0xac (size before relaxing)
+ .eh_frame      0x00105128       0xbc src/branding/branding.o
+                                 0xe8 (size before relaxing)
+
+.rodata.str1.4  0x001051e4     0x129b
+ .rodata.str1.4
+                0x001051e4     0x129b src/system/idt.o
+                                 0x5f (size before relaxing)
+ .rodata.str1.4
+                0x0010647f       0x6f src/drivers/VGAf/vgaf.o
+ .rodata.str1.4
+                0x0010647f       0x64 src/drivers/KEYdriver/key.o
+ .rodata.str1.4
+                0x0010647f      0xdac src/Shell_old/Shell_old.o
+ .rodata.str1.4
+                0x0010647f      0x28f src/Shell_old/layout_screen.o
+ .rodata.str1.4
+                0x0010647f      0x12b src/include/bugcheck.o
+
+.rodata.cst2    0x00106480        0x2
+ .rodata.cst2   0x00106480        0x2 src/system/idt.o
+
+.rel.dyn        0x00106484        0x0
+ .rel.got       0x00106484        0x0 Boot/boot.o
+ .rel.iplt      0x00106484        0x0 Boot/boot.o
+
+.data           0x00107000        0xc
+ *(.data)
+ .data          0x00107000        0x0 Boot/boot.o
+ .data          0x00107000        0x0 src/system/SessionStarter.o
+ .data          0x00107000        0x0 src/system/idt.o
+ .data          0x00107000        0x1 src/drivers/VGAf/vgaf.o
+ .data          0x00107001        0x0 src/drivers/KEYdriver/key.o
+ .data          0x00107001        0x0 src/Shell_old/Shell_old.o
+ .data          0x00107001        0x0 src/Shell_old/layout_screen.o
+ .data          0x00107001        0x0 src/RazzleFS/ReqFiles/sata.o
+ .data          0x00107001        0x0 src/include/bugcheck.o
+ *fill*         0x00107001        0x3 
+ .data          0x00107004        0x8 src/branding/branding.o
+                0x00107004                version
+                0x00107008                build
+
+.got            0x0010700c        0x0
+ .got           0x0010700c        0x0 Boot/boot.o
+
+.got.plt        0x0010700c        0xc
+ .got.plt       0x0010700c        0xc Boot/boot.o
+                0x0010700c                _GLOBAL_OFFSET_TABLE_
+
+.igot.plt       0x00107018        0x0
+ .igot.plt      0x00107018        0x0 Boot/boot.o
+
+.data.rel.local
+                0x00107018        0x8
+ .data.rel.local
+                0x00107018        0x8 src/drivers/KEYdriver/key.o
+
+.bss            0x00108000     0x5260
+ *(COMMON)
+ *(.bss)
+ .bss           0x00108000     0x4000 Boot/boot.o
+ .bss           0x0010c000        0x0 src/system/SessionStarter.o
+ .bss           0x0010c000      0x820 src/system/idt.o
+                0x0010c000                idtp
+                0x0010c020                idt
+ .bss           0x0010c820        0x8 src/drivers/VGAf/vgaf.o
+ .bss           0x0010c828        0x4 src/drivers/KEYdriver/key.o
+ *fill*         0x0010c82c       0x14 
+ .bss           0x0010c840      0xa20 src/Shell_old/Shell_old.o
+ .bss           0x0010d260        0x0 src/Shell_old/layout_screen.o
+ .bss           0x0010d260        0x0 src/RazzleFS/ReqFiles/sata.o
+ .bss           0x0010d260        0x0 src/include/bugcheck.o
+ .bss           0x0010d260        0x0 src/branding/branding.o
+
+/DISCARD/
+ *(.note.GNU-stack)
+ *(.gnu_debuglink)
+ *(.gnu.lto_*)
+LOAD Boot/boot.o
+LOAD src/system/SessionStarter.o
+LOAD src/system/idt.o
+LOAD src/drivers/VGAf/vgaf.o
+LOAD src/drivers/KEYdriver/key.o
+LOAD src/Shell_old/Shell_old.o
+LOAD src/Shell_old/layout_screen.o
+LOAD src/RazzleFS/ReqFiles/sata.o
+LOAD src/include/bugcheck.o
+LOAD src/branding/branding.o
+OUTPUT(system.bin elf32-i386)
+
+.comment        0x00000000       0x2d
+ .comment       0x00000000       0x2d src/system/SessionStarter.o
+                                 0x2e (size before relaxing)
+ .comment       0x0000002d       0x2e src/system/idt.o
+ .comment       0x0000002d       0x2e src/drivers/VGAf/vgaf.o
+ .comment       0x0000002d       0x2e src/drivers/KEYdriver/key.o
+ .comment       0x0000002d       0x2e src/Shell_old/Shell_old.o
+ .comment       0x0000002d       0x2e src/Shell_old/layout_screen.o
+ .comment       0x0000002d       0x2e src/RazzleFS/ReqFiles/sata.o
+ .comment       0x0000002d       0x2e src/include/bugcheck.o
+ .comment       0x0000002d       0x2e src/branding/branding.o

@@ -59,35 +59,23 @@ Unmovable uprint function
 void uprint(const char* str) {
     int old_x = cursor_x;
     int old_y = cursor_y;
-    int x = 0;
-    int y = 0;
 
-    // Always show on the top row oonly
-    unsigned short attr = 0x70 << 8;
+    // Always show on the top row only
+    unsigned short attr = 0xA0 << 8;
     for (int i = 0; i < VGA_WIDTH; i++) {
         vga_buffer[i] = ' ' | attr;
     }
 
-    while (*str) {
-        if (*str == '\n') {
-            x = 0;
-        } else {
-            if (x >= VGA_WIDTH) {
-                break;
-            }
-            int index = y * VGA_WIDTH + x;
-            vga_buffer[index] = (*str) | attr;
-            x++;
-        }
+    cursor_x = 0;
+    cursor_y = 0;
+    while (*str && *str != '\n' && cursor_x < VGA_WIDTH) {
+        int index = cursor_y * VGA_WIDTH + cursor_x;
+        vga_buffer[index] = (*str) | attr;
+        cursor_x++;
         str++;
     }
 
     if (old_y == 0) {
-        /*
-
-        if the annoying caller of uprint was aalery typing shit on the top row, we
-        just move the cursor
-        */
         cursor_x = 0;
         cursor_y = 1;
     } else {

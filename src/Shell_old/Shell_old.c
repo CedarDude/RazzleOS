@@ -101,6 +101,32 @@ static void print_int(int n) {
     }
 }
 
+static int int_to_str(int n, char* buf) {
+    unsigned int value;
+    int i = 0;
+    if (n < 0) {
+        buf[i++] = '-';
+        value = (unsigned int)(-n);
+    } else {
+        value = (unsigned int)n;
+    }
+
+    char tmp[12];
+    int j = 0;
+    if (value == 0) {
+        tmp[j++] = '0';
+    }
+    while (value) {
+        tmp[j++] = (char)('0' + (value % 10));
+        value /= 10;
+    }
+    while (j > 0) {
+        buf[i++] = tmp[--j];
+    }
+    buf[i] = '\0';
+    return i;
+}
+
 /* A generic blocking function to read a full line of text with backspace support */
 static void read_input_line(char* buffer, int max_len) {
     int buf_idx = 0;
@@ -129,8 +155,12 @@ static void read_input_line(char* buffer, int max_len) {
 
 static void cmd_ver(void) {
     printv("Razzle codename Litewave");
-    printv_color("[Version 0.1.54 BETA, Build 150]", 0x0A);
-    printv("\nCopyright (c) 2026 Jad. All rights reserved.\n");
+    printv(" [Version ");
+    print_int(version);
+    printv(", Build ");
+    print_int(build);
+    printv("]\n");
+    printv("Copyright (c) 2026 Jad. All rights reserved.\n");
     printv("License: GNU General Public License v3.0\n");
 }
 
@@ -151,7 +181,6 @@ shell - A simple command-line interface for Razzle OS, providing basic commands 
 */
 
 
-/* System Information Command */
 static void cmd_sysinfo(void) {
     /* Retrieve CPUID Vendor String */
     printv_color("CPU =======================================================\n", 0x0E);
@@ -356,7 +385,7 @@ static void calc(void) {
 
 static void razinfo(void) {
 
-                                                                
+    RT_kernel_info();                    
     printv("  _____               _              \n");
     printv(" |  __ \\             | |             \n");
     printv(" | |__) |__ _ _______| | ___         \n");
@@ -577,7 +606,18 @@ void shell_main() {
     keyboard_init();
     layout_screen_init();
 
-    uprint("                        Razzle 0.2.5.2026 build 260\n\n");
+    char top_line[80];
+    int top_len = 0;
+    const char* title = "                        Razzle ";
+    while (*title) top_line[top_len++] = *title++;
+    top_len += int_to_str(version, top_line + top_len);
+    const char* mid = " build ";
+    while (*mid) top_line[top_len++] = *mid++;
+    top_len += int_to_str(build, top_line + top_len);
+    top_line[top_len] = '\0';
+
+    uprint(top_line);
+    printv("\n\n");
 
     printv_color("              +---------------------------------------------+\n", 0x0A);
 
@@ -598,8 +638,9 @@ void shell_main() {
     printv_color("|\n", 0x0A);
     printv_color("              +---------------------------------------------+\n", 0x0A);
 
-
-    printv_color(" Sucessfully loaded shell! Welcome to Razzle build 260! type some stuffs here ! \n\n", 0xA0);
+    printv_color(" Sucessfully loaded shell! Welcome to Razzle build ", 0xA0);
+    print_int(build);
+    printv_color("! type some stuffs here ! \n\n", 0xA0);
     while (1) {
         colortext(0x0E);
         printv("R:\\> ");

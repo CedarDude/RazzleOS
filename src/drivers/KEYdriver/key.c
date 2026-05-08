@@ -57,25 +57,26 @@ static const char scancode_qwerty_shift[128] = {
 // idk why i did this
 // shit nobody ask for it but i decided it useful after finding the screen is empty
 //
-static const char scancode_qwertz[128] = {
-    0,   27,  '1', '2', '3', '4', '5', '6', '7', '8', '9', '0',
-    '\'', '+', '\b', '\t',
-   'q', 'w', 'e', 'r', 't', 'z', 'u', 'i', 'o', 'p', '\x81', '+', '\n', 0,   'a', 's',
-   'd', 'f', 'g', 'h', 'j', 'k', 'l', '\x94', '\x84', '^', '#', 'y', 'x', 'c', 'v', 'b',
-   'n', 'm', ',', '.', '-', 0,   0,   '*', 0,   ' ', 0,   0,   0,   0,   0,
-    0,  0,   0,   0,   0,   0,   0,   '7', '8', '9', '-', '4', '5', '6', '+', '1',
-   '2', '3', '0', '.', 0,   0,   0,   0,   0,   0,   0,   0,   0,   0,   0,   0
-};
-static const char scancode_qwertz_shift[128] = {
-    0,   27,  '!', '"', ';', '%', '&', '/', '(', ')', '=', '?',
-    '\'', '*', '\b', '\t',
-   'Q', 'W', 'E', 'R', 'T', 'Z', 'U', 'I', 'O', 'P', '\x9A', '*', '\n', 0,   'A', 'S',
-   'D', 'F', 'G', 'H', 'J', 'K', 'L', '\x99', '\x8E', '\xF8', '\'', 'Y', 'X', 'C', 'V', 'B',
-   'N', 'M', ';', ':', '_', 0,   0,   '*', 0,   ' ', 0,   0,   0,   0,   0,
-    0,  0,   0,   0,   0,   0,   0,   '7', '8', '9', '-', '4', '5', '6', '+', '1',
-   '2', '3', '0', '.', 0,   0,   0,   0,   0,   0,   0,   0,   0,   0,   0,   0
-};
-
+// REMOVE // IF YOU WANT IT BACK!
+// static const char scancode_qwertz[128] = {
+//     0,   27,  '1', '2', '3', '4', '5', '6', '7', '8', '9', '0',
+//     '\'', '+', '\b', '\t',
+//    'q', 'w', 'e', 'r', 't', 'z', 'u', 'i', 'o', 'p', '\x81', '+', '\n', 0,   'a', 's',
+//    'd', 'f', 'g', 'h', 'j', 'k', 'l', '\x94', '\x84', '^', '#', 'y', 'x', 'c', 'v', 'b',
+//    'n', 'm', ',', '.', '-', 0,   0,   '*', 0,   ' ', 0,   0,   0,   0,   0,
+//     0,  0,   0,   0,   0,   0,   0,   '7', '8', '9', '-', '4', '5', '6', '+', '1',
+//    '2', '3', '0', '.', 0,   0,   0,   0,   0,   0,   0,   0,   0,   0,   0,   0
+// };
+// static const char scancode_qwertz_shift[128] = {
+//     0,   27,  '!', '"', ';', '%', '&', '/', '(', ')', '=', '?',
+//     '\'', '*', '\b', '\t',
+//    'Q', 'W', 'E', 'R', 'T', 'Z', 'U', 'I', 'O', 'P', '\x9A', '*', '\n', 0,   'A', 'S',
+//    'D', 'F', 'G', 'H', 'J', 'K', 'L', '\x99', '\x8E', '\xF8', '\'', 'Y', 'X', 'C', 'V', 'B',
+//    'N', 'M', ';', ':', '_', 0,   0,   '*', 0,   ' ', 0,   0,   0,   0,   0,
+//     0,  0,   0,   0,   0,   0,   0,   '7', '8', '9', '-', '4', '5', '6', '+', '1',
+//    '2', '3', '0', '.', 0,   0,   0,   0,   0,   0,   0,   0,   0,   0,   0,   0
+// };
+// 
 static const char* scancode_map = scancode_azerty;
 static const char* scancode_shift_map = scancode_azerty_shift;
 
@@ -104,10 +105,11 @@ void keyboard_set_layout(unsigned char layout) {
     if (layout == 2) {
         scancode_map = scancode_qwerty;
         scancode_shift_map = scancode_qwerty_shift;
-    } else if (layout == 3) {
-        scancode_map = scancode_qwertz; // middle europe stuff
-        scancode_shift_map = scancode_qwertz_shift;
-    } else {
+    } //else if (layout == 3) {
+       // scancode_map = scancode_qwertz; // middle europe stuff
+       // scancode_shift_map = scancode_qwertz_shift;
+   /// } 
+   else {
         scancode_map = scancode_azerty;
         scancode_shift_map = scancode_azerty_shift;
     }
