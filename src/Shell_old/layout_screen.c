@@ -83,6 +83,7 @@ void layout_screen_init(void) {
         //else if (key == '3' || key == '#') {
            // choice = '3';
         //}
+        //
     }
 // clear the fuck
 // IT ANNOY ME I WANT TO SLAP THE SHIT OUT OF THIS
