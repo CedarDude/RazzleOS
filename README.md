@@ -1,10 +1,8 @@
 # Razzle
 Razzle Operating System.
-# Razzle 1
 
 ## Features
-
-- Color-coded command output (16 colors)
+- Colored text output (16 colors)
 - Command history with up/down arrow navigation (10 commands)
 - AZERTY keyboard layout support
 - Case-insensitive command parsing
@@ -15,57 +13,43 @@ If you want to get the QWERTZ layout, just open layout_screen.c and key.c and re
 require more info, please use `jad.helpabout@gmail.com`
 
 ## How to Build
-
 ### Requirements
-- GCC (i386 cross-compiler or multilib support)
-- GNU Assembler (gas)
-- GNU Linker (ld)
-- GRUB tools (grub-mkrescue)
-- Make
-- WSL/Linux environment recommended
+- GNU Cross-Compiler (GCC), GNU Make and binutils for i386
+- GRUB tools (grub-mkrescue, grub-pc-bin)
+- Linux environment
 
-### Build Steps
-
-1. **Navigate to project directory**
-2. **Build kernel and ISO image**
-   ```bash
-   make x86
-   ```
-## How to Run
-
-### QEMU Emulation (Recommended for Testing)
+### The Build Process
 
 ```bash
-qemu-system-i386 -cdrom razzle.iso
+# Build for x86
+make x86
 ```
 
+## How to Run
 ### Real Hardware
-
+#### Linux
 1. Insert USB drive
 2. Burn ISO to USB:
-   ```bash
-   sudo dd if=razzle.iso of=/dev/sdX bs=4M
-   ```
-3. Boot from USB drive (change BIOS boot order)
+```bash
+sudo dd if=razzle.iso of=/dev/sdX bs=4M
+sync
+```
+3. Boot from the freshly written USB drive
 
-
-## OR use rufus
-Click on rufus software.
-Chose the USB and ISO
-then use DD, not ISO mode thing.
-
+#### Windows
+Run Rufus. Choose the USB drive and Razzle ISO. Write the image using DD mode.
 
 ### Virtual Machine
+- **VirtualBox**: Create new VM, use ISO as boot media
+- **VMware**: Attach the ISO image to a CD/DVD drive
+- **Hyper-V**: Create a VM, use the Razzle boot image, and set to Legacy Boot
+- **QEMU**: `qemu-system-i386 -cdrom razzle.iso`
 
-- **VirtualBox**: Create new VM, use `razzle.iso` as boot media
-- **VMware**: Attach `razzle.iso` as CD/DVD drive
-- **Hyper-V**: Create a VM, attach an ISO, and set to Legacy Boot
 ## Version Information
-
-- **Shell Version**: 0.1 BETA
-- **Build**: 150
-- **Last Updated**: April 2026
+- **Shell Version**: 0.2 BETA
+- **Build**: 450
+- **Last Updated**: May 2026
 - **Copyright**: (c) 2026 Jad
-- **License**: GNU General Public License (GPL)
+- **License**: GNU General Public License 3 (GPL v3)
 
 
