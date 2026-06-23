@@ -43,5 +43,5 @@ void RT_kernel_info(void) {
     print_int(build);
     printv(".");
     print_int(version);
-    printv("\n");
+    printv(" -  LAST MILESTONE 1 BUILD.\n");
 }

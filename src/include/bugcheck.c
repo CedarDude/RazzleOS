@@ -46,6 +46,7 @@ void bugcheck(void* error_message) {
     clear();
     colorscreen(0x1F); 
     colortext(0x1F);
+    __asm__ __volatile__("cli");
 
     printv_color("Razzle\n", 0x1F);
     printv("Your System has encountered a critical error and needs to restart.\nThis is a critical error and the system showed this bugcheck to\nstop damages on the hardware/software.\n");

@@ -43,8 +43,6 @@ Discarded input sections
                 0x00000000        0x4 src/Shell_old/layout_screen.o
  .note.GNU-stack
                 0x00000000        0x0 src/Shell_old/layout_screen.o
- .note.GNU-stack
-                0x00000000        0x0 src/RazzleFS/ReqFiles/sata.o
  .group         0x00000000        0x8 src/include/bugcheck.o
  .text.__x86.get_pc_thunk.bx
                 0x00000000        0x4 src/include/bugcheck.o
@@ -105,12 +103,11 @@ Linker script and memory map
  .text          0x001030e0      0x190 src/Shell_old/layout_screen.o
                 0x001030e0                layout_screen_init
                 0x00103250                layoutswitcher_test
- .text          0x00103270        0x0 src/RazzleFS/ReqFiles/sata.o
- .text          0x00103270       0xc5 src/include/bugcheck.o
+ .text          0x00103270       0xc6 src/include/bugcheck.o
                 0x00103270                check_if_bugcheck_function_exists
                 0x001032a0                tripletest_and_test_idt
                 0x001032d0                bugcheck
- *fill*         0x00103335        0xb 
+ *fill*         0x00103336        0xa 
  .text          0x00103340      0x148 src/branding/branding.o
                 0x001033e0                RT_kernel_info
 
@@ -190,27 +187,27 @@ Linker script and memory map
  .eh_frame      0x00105128       0xbc src/branding/branding.o
                                  0xe8 (size before relaxing)
 
-.rodata.str1.4  0x001051e4     0x129b
+.rodata.str1.4  0x001051e4     0x129f
  .rodata.str1.4
-                0x001051e4     0x129b src/system/idt.o
+                0x001051e4     0x129f src/system/idt.o
                                  0x5f (size before relaxing)
  .rodata.str1.4
-                0x0010647f       0x6f src/drivers/VGAf/vgaf.o
+                0x00106483       0x6f src/drivers/VGAf/vgaf.o
  .rodata.str1.4
-                0x0010647f       0x64 src/drivers/KEYdriver/key.o
+                0x00106483       0x64 src/drivers/KEYdriver/key.o
  .rodata.str1.4
-                0x0010647f      0xdac src/Shell_old/Shell_old.o
+                0x00106483      0xdb0 src/Shell_old/Shell_old.o
  .rodata.str1.4
-                0x0010647f      0x28f src/Shell_old/layout_screen.o
+                0x00106483      0x28f src/Shell_old/layout_screen.o
  .rodata.str1.4
-                0x0010647f      0x12b src/include/bugcheck.o
+                0x00106483      0x12b src/include/bugcheck.o
 
-.rodata.cst2    0x00106480        0x2
- .rodata.cst2   0x00106480        0x2 src/system/idt.o
+.rodata.cst2    0x00106484        0x2
+ .rodata.cst2   0x00106484        0x2 src/system/idt.o
 
-.rel.dyn        0x00106484        0x0
- .rel.got       0x00106484        0x0 Boot/boot.o
- .rel.iplt      0x00106484        0x0 Boot/boot.o
+.rel.dyn        0x00106488        0x0
+ .rel.got       0x00106488        0x0 Boot/boot.o
+ .rel.iplt      0x00106488        0x0 Boot/boot.o
 
 .data           0x00107000        0xc
  *(.data)
@@ -221,7 +218,6 @@ Linker script and memory map
  .data          0x00107001        0x0 src/drivers/KEYdriver/key.o
  .data          0x00107001        0x0 src/Shell_old/Shell_old.o
  .data          0x00107001        0x0 src/Shell_old/layout_screen.o
- .data          0x00107001        0x0 src/RazzleFS/ReqFiles/sata.o
  .data          0x00107001        0x0 src/include/bugcheck.o
  *fill*         0x00107001        0x3 
  .data          0x00107004        0x8 src/branding/branding.o
@@ -256,7 +252,6 @@ Linker script and memory map
  *fill*         0x0010c82c       0x14 
  .bss           0x0010c840      0xa20 src/Shell_old/Shell_old.o
  .bss           0x0010d260        0x0 src/Shell_old/layout_screen.o
- .bss           0x0010d260        0x0 src/RazzleFS/ReqFiles/sata.o
  .bss           0x0010d260        0x0 src/include/bugcheck.o
  .bss           0x0010d260        0x0 src/branding/branding.o
 
@@ -271,7 +266,6 @@ LOAD src/drivers/VGAf/vgaf.o
 LOAD src/drivers/KEYdriver/key.o
 LOAD src/Shell_old/Shell_old.o
 LOAD src/Shell_old/layout_screen.o
-LOAD src/RazzleFS/ReqFiles/sata.o
 LOAD src/include/bugcheck.o
 LOAD src/branding/branding.o
 OUTPUT(system.bin elf32-i386)
@@ -284,6 +278,5 @@ OUTPUT(system.bin elf32-i386)
  .comment       0x0000002d       0x2e src/drivers/KEYdriver/key.o
  .comment       0x0000002d       0x2e src/Shell_old/Shell_old.o
  .comment       0x0000002d       0x2e src/Shell_old/layout_screen.o
- .comment       0x0000002d       0x2e src/RazzleFS/ReqFiles/sata.o
  .comment       0x0000002d       0x2e src/include/bugcheck.o
  .comment       0x0000002d       0x2e src/branding/branding.o

@@ -25,12 +25,44 @@ static void validate_idt(void) {
     }
 }
 
+static int append_str(char* buf, int pos, const char* s) {
+    while (*s) {
+        buf[pos++] = *s++;
+    }
+    return pos;
+}
+
+static int append_hex32(char* buf, int pos, uint32_t value) {
+    const char* digits = "0123456789ABCDEF";
+    buf[pos++] = '0';
+    buf[pos++] = 'x';
+    int started = 0;
+    for (int shift = 28; shift >= 0; shift -= 4) {
+        uint32_t nibble = (value >> shift) & 0xF;
+        if (nibble != 0 || started) {
+            started = 1;
+            buf[pos++] = digits[nibble];
+        }
+    }
+    if (!started) {
+        buf[pos++] = '0';
+    }
+    return pos;
+}
+
 void init_idt() {
     idtp.limit = (sizeof(idt_entry_t) * 256) - 1;
     idtp.base = (uint32_t)&idt;
 
     if (idtp.base == 0 || idtp.limit != (sizeof(idt_entry_t) * 256) - 1) {
-        bugcheck("Invalid IDT descriptor");
+        char msg[256];
+        int pos = 0;
+        pos = append_str(msg, pos, "Invalid_IDT_descriptor, please if you see this error message, report it to the developers (jad.helpabout@gmail.com) with the following info:\nIDT base: ");
+        pos = append_hex32(msg, pos, idtp.base);
+        pos = append_str(msg, pos, "\nIDT limit: ");
+        pos = append_hex32(msg, pos, idtp.limit);
+        msg[pos] = '\0';
+        bugcheck(msg);
     }
 
     for (int i = 0; i < 256; i++) {

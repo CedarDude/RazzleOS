@@ -608,7 +608,7 @@ void shell_main() {
 
     char top_line[80];
     int top_len = 0;
-    const char* title = "                        Razzle ";
+    const char* title = "                            Razzle ";
     while (*title) top_line[top_len++] = *title++;
     top_len += int_to_str(version, top_line + top_len);
     const char* mid = " build ";
@@ -639,6 +639,7 @@ void shell_main() {
     printv_color("              +---------------------------------------------+\n", 0x0A);
 
     printv_color(" Sucessfully loaded shell! Welcome to Razzle build ", 0xA0);
+    
     print_int(build);
     printv_color("! type some stuffs here ! \n\n", 0xA0);
     while (1) {
