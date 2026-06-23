@@ -556,6 +556,15 @@ static void shell_execute_command(char* buffer) {
         return;
     }
 
+    if (string_equal_ci("MILESTONE INFO", buffer + cmd_start)) {
+        printv("Razzle Technology RT2 Build ");
+    print_int(build);
+    printv(".");
+    print_int(version);
+    printv(" -  LAST MILESTONE 1 BUILD.\n");
+        return;
+    }
+
     if (string_equal_ci("raztools dritest", buffer + cmd_start)) {
         printv("Available driver tests:\n");
         printv(" - raztools dritest bug: Test the bugcheck driver.\n");

@@ -67,7 +67,7 @@ Linker script and memory map
  *(.multiboot)
  .multiboot     0x00100000        0xc Boot/boot.o
 
-.text           0x00101000     0x2488
+.text           0x00101000     0x2528
  *(.text)
  .text          0x00101000        0xf Boot/boot.o
                 0x00101000                _start
@@ -97,117 +97,117 @@ Linker script and memory map
                 0x00101690                keyboard_set_layout
                 0x001016e0                get_key
                 0x00101780                keyboardtest
- .text          0x001017a0     0x1931 src/Shell_old/Shell_old.o
-                0x00101b30                shell_main
- *fill*         0x001030d1        0xf 
- .text          0x001030e0      0x190 src/Shell_old/layout_screen.o
-                0x001030e0                layout_screen_init
-                0x00103250                layoutswitcher_test
- .text          0x00103270       0xc6 src/include/bugcheck.o
-                0x00103270                check_if_bugcheck_function_exists
-                0x001032a0                tripletest_and_test_idt
-                0x001032d0                bugcheck
- *fill*         0x00103336        0xa 
- .text          0x00103340      0x148 src/branding/branding.o
-                0x001033e0                RT_kernel_info
+ .text          0x001017a0     0x19d6 src/Shell_old/Shell_old.o
+                0x00101b70                shell_main
+ *fill*         0x00103176        0xa 
+ .text          0x00103180      0x190 src/Shell_old/layout_screen.o
+                0x00103180                layout_screen_init
+                0x001032f0                layoutswitcher_test
+ .text          0x00103310       0xc6 src/include/bugcheck.o
+                0x00103310                check_if_bugcheck_function_exists
+                0x00103340                tripletest_and_test_idt
+                0x00103370                bugcheck
+ *fill*         0x001033d6        0xa 
+ .text          0x001033e0      0x148 src/branding/branding.o
+                0x00103480                RT_kernel_info
 
-.iplt           0x00103488        0x0
- .iplt          0x00103488        0x0 Boot/boot.o
+.iplt           0x00103528        0x0
+ .iplt          0x00103528        0x0 Boot/boot.o
 
 .text.__x86.get_pc_thunk.bx
-                0x00103488        0x4
+                0x00103528        0x4
  .text.__x86.get_pc_thunk.bx
-                0x00103488        0x4 src/system/SessionStarter.o
-                0x00103488                __x86.get_pc_thunk.bx
+                0x00103528        0x4 src/system/SessionStarter.o
+                0x00103528                __x86.get_pc_thunk.bx
 
 .text.__x86.get_pc_thunk.ax
-                0x0010348c        0x4
+                0x0010352c        0x4
  .text.__x86.get_pc_thunk.ax
-                0x0010348c        0x4 src/system/idt.o
-                0x0010348c                __x86.get_pc_thunk.ax
+                0x0010352c        0x4 src/system/idt.o
+                0x0010352c                __x86.get_pc_thunk.ax
 
 .text.__x86.get_pc_thunk.dx
-                0x00103490        0x4
+                0x00103530        0x4
  .text.__x86.get_pc_thunk.dx
-                0x00103490        0x4 src/drivers/VGAf/vgaf.o
-                0x00103490                __x86.get_pc_thunk.dx
+                0x00103530        0x4 src/drivers/VGAf/vgaf.o
+                0x00103530                __x86.get_pc_thunk.dx
 
 .text.__x86.get_pc_thunk.cx
-                0x00103494        0x4
+                0x00103534        0x4
  .text.__x86.get_pc_thunk.cx
-                0x00103494        0x4 src/drivers/VGAf/vgaf.o
-                0x00103494                __x86.get_pc_thunk.cx
+                0x00103534        0x4 src/drivers/VGAf/vgaf.o
+                0x00103534                __x86.get_pc_thunk.cx
 
 .text.__x86.get_pc_thunk.bp
-                0x00103498        0x4
+                0x00103538        0x4
  .text.__x86.get_pc_thunk.bp
-                0x00103498        0x4 src/drivers/VGAf/vgaf.o
-                0x00103498                __x86.get_pc_thunk.bp
+                0x00103538        0x4 src/drivers/VGAf/vgaf.o
+                0x00103538                __x86.get_pc_thunk.bp
 
 .text.__x86.get_pc_thunk.si
-                0x0010349c        0x4
+                0x0010353c        0x4
  .text.__x86.get_pc_thunk.si
-                0x0010349c        0x4 src/Shell_old/Shell_old.o
-                0x0010349c                __x86.get_pc_thunk.si
+                0x0010353c        0x4 src/Shell_old/Shell_old.o
+                0x0010353c                __x86.get_pc_thunk.si
 
 .rodata         0x00104000      0x244
  *(.rodata)
  .rodata        0x00104000      0x200 src/drivers/KEYdriver/key.o
  .rodata        0x00104200       0x44 src/Shell_old/Shell_old.o
 
-.rodata.str1.1  0x00104244      0x385
+.rodata.str1.1  0x00104244      0x3b1
  .rodata.str1.1
-                0x00104244      0x385 src/system/SessionStarter.o
+                0x00104244      0x3b1 src/system/SessionStarter.o
                                   0x5 (size before relaxing)
  .rodata.str1.1
-                0x001045c9       0x1e src/system/idt.o
+                0x001045f5       0x1e src/system/idt.o
  .rodata.str1.1
-                0x001045c9      0x2d7 src/Shell_old/Shell_old.o
+                0x001045f5      0x322 src/Shell_old/Shell_old.o
  .rodata.str1.1
-                0x001045c9       0x6c src/Shell_old/layout_screen.o
+                0x001045f5       0x6c src/Shell_old/layout_screen.o
  .rodata.str1.1
-                0x001045c9       0x16 src/include/bugcheck.o
+                0x001045f5       0x16 src/include/bugcheck.o
  .rodata.str1.1
-                0x001045c9       0x21 src/branding/branding.o
+                0x001045f5       0x3c src/branding/branding.o
 
-.eh_frame       0x001045cc      0xc18
- .eh_frame      0x001045cc       0x54 src/system/SessionStarter.o
- .eh_frame      0x00104620       0x94 src/system/idt.o
+.eh_frame       0x001045f8      0xc68
+ .eh_frame      0x001045f8       0x54 src/system/SessionStarter.o
+ .eh_frame      0x0010464c       0x94 src/system/idt.o
                                  0xc0 (size before relaxing)
- .eh_frame      0x001046b4      0x20c src/drivers/VGAf/vgaf.o
+ .eh_frame      0x001046e0      0x20c src/drivers/VGAf/vgaf.o
                                 0x24c (size before relaxing)
- .eh_frame      0x001048c0       0x6c src/drivers/KEYdriver/key.o
+ .eh_frame      0x001048ec       0x6c src/drivers/KEYdriver/key.o
                                  0xc0 (size before relaxing)
- .eh_frame      0x0010492c      0x708 src/Shell_old/Shell_old.o
-                                0x734 (size before relaxing)
- .eh_frame      0x00105034       0x74 src/Shell_old/layout_screen.o
+ .eh_frame      0x00104958      0x758 src/Shell_old/Shell_old.o
+                                0x784 (size before relaxing)
+ .eh_frame      0x001050b0       0x74 src/Shell_old/layout_screen.o
                                  0xa0 (size before relaxing)
- .eh_frame      0x001050a8       0x80 src/include/bugcheck.o
+ .eh_frame      0x00105124       0x80 src/include/bugcheck.o
                                  0xac (size before relaxing)
- .eh_frame      0x00105128       0xbc src/branding/branding.o
+ .eh_frame      0x001051a4       0xbc src/branding/branding.o
                                  0xe8 (size before relaxing)
 
-.rodata.str1.4  0x001051e4     0x129f
+.rodata.str1.4  0x00105260     0x129f
  .rodata.str1.4
-                0x001051e4     0x129f src/system/idt.o
+                0x00105260     0x129f src/system/idt.o
                                  0x5f (size before relaxing)
  .rodata.str1.4
-                0x00106483       0x6f src/drivers/VGAf/vgaf.o
+                0x001064ff       0x6f src/drivers/VGAf/vgaf.o
  .rodata.str1.4
-                0x00106483       0x64 src/drivers/KEYdriver/key.o
+                0x001064ff       0x64 src/drivers/KEYdriver/key.o
  .rodata.str1.4
-                0x00106483      0xdb0 src/Shell_old/Shell_old.o
+                0x001064ff      0xdb0 src/Shell_old/Shell_old.o
  .rodata.str1.4
-                0x00106483      0x28f src/Shell_old/layout_screen.o
+                0x001064ff      0x28f src/Shell_old/layout_screen.o
  .rodata.str1.4
-                0x00106483      0x12b src/include/bugcheck.o
+                0x001064ff      0x12b src/include/bugcheck.o
 
-.rodata.cst2    0x00106484        0x2
- .rodata.cst2   0x00106484        0x2 src/system/idt.o
+.rodata.cst2    0x00106500        0x2
+ .rodata.cst2   0x00106500        0x2 src/system/idt.o
 
-.rel.dyn        0x00106488        0x0
- .rel.got       0x00106488        0x0 Boot/boot.o
- .rel.iplt      0x00106488        0x0 Boot/boot.o
+.rel.dyn        0x00106504        0x0
+ .rel.got       0x00106504        0x0 Boot/boot.o
+ .rel.iplt      0x00106504        0x0 Boot/boot.o
 
 .data           0x00107000        0xc
  *(.data)
